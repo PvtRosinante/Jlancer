@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CvController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,9 @@ class CvController extends Controller
      */
     public function index()
     {
-        $cv = User::with(['contact', 'award', 'other', 'summary', 'education', 'experience', 'project'])->orderBy('created_at', 'DESC')->get();
+        $profile = User::all();
 
-        return response()->json(['data' => $cv]);
+        return response()->json(['profile' => $profile]);
     }
 
     /**
@@ -48,9 +50,7 @@ class CvController extends Controller
      */
     public function show($id)
     {
-        $cv = User::with('contact')->with('award')->with('other')->with('summary')->with('education')->with('experience')->with('project')->orderBy('created_at', 'DESC')->findOrFail($id);
-
-        return response()->json(['data' => $cv]);
+        //
     }
 
     /**
