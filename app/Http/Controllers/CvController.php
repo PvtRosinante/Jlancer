@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Contact;
+use App\Award;
+use App\Other;
+use App\Summary;
+use App\Education;
+use App\Experience;
+use App\Project;
 use Illuminate\Http\Request;
 use Auth;
 
