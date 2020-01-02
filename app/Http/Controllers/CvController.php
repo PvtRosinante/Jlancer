@@ -103,7 +103,7 @@ class CvController extends Controller
         $cnt->phone = $request->phone;
         $cnt->facebook = $request->facebook;
         $cnt->twitter = $request->twitter;
-        $cnt->instagran = $request->instagram;
+        $cnt->instagram = $request->instagram;
         $cnt->save();
 
 
