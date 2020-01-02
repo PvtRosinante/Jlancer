@@ -28,6 +28,10 @@ Route::group([ 'prefix' => 'auth'], function (){
     });
 }); 
 
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::post('/cv', 'CvController@insertcv');
+});
+
 Route::get('vacancy', 'VacancyController@index');
 Route::post('vacancy', 'VacancyController@create');
 Route::post('/vacancy/{id}', 'VacancyController@update');

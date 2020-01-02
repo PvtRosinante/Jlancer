@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class CvController extends Controller
 {
@@ -85,5 +86,73 @@ class CvController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function insertcv(Request $request)
+    {
+        $cnt = new Contact;
+
+        $cnt->user_id = Auth::user()->id;
+        $cnt->phone = $request->phone;
+        $cnt->facebook = $request->facebook;
+        $cnt->twitter = $request->twitter;
+        $cnt->instagran = $request->instagram;
+        $cnt->save();
+
+
+        $aw = new Award;
+
+        $aw->user_id = Auth::user()->id;
+        $aw->award = $request->award;
+        $aw->save();
+
+
+        $oth = new Other;
+
+        $oth->user_id = Auth::user()->id;
+        $oth->birth = $request->birth;
+        $oth->skill = $request->skill;
+        $oth->language = $request->language;
+        $oth->interest = $request->interest;
+        $oth->other_info = $request->other_info;
+        $oth->save();
+
+
+        $sum = new Summary;
+
+        $sum->user_id = Auth::user()->id;
+        $sum->summary = $request->summary;
+        $sum->save();
+
+        $edu = new Education;
+
+        $edu->user_id = Auth::user()->id;
+        $edu->agency = $request->agency;
+        $edu->time = $request->time;
+        $edu->study_prog = $request->study_prog;
+        $edu->description = $request->description;
+        $edu->save();
+
+
+        $exp = new Experience;
+
+        $exp->user_id = Auth::user()->id;
+        $exp->experience = $request->experience;
+        $exp->time = $request->time;
+        $exp->sub_exp = $request->sub_exp;
+        $exp->description = $request->description;
+        $exp->save();
+
+
+        $prj = new Project;
+
+        $prj->user_id = Auth::user()->id;
+        $prj->project = $request->project;
+        $prj->time = $request->time;
+        $prj->sub_project = $request->sub_project;
+        $prj->description = $request->description;
+        $prj->save();
+
+        return response()->json(['Messages' => 'CV was successfully inserted!']);
     }
 }
