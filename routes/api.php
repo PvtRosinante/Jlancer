@@ -48,3 +48,5 @@ Route::get('/cv/{id}', 'CvController@show');
 Route::get('/profile', 'ProfileController@index');
 
 Route::get('/home', 'HomepageController@index');
+
+Route::get('/vacancyskill', 'SkillvacancyController@index');

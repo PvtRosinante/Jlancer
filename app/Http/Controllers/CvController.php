@@ -24,7 +24,7 @@ class CvController extends Controller
     {
         $cv = User::with(['contact', 'award', 'other', 'summary', 'education', 'experience', 'project'])->orderBy('created_at', 'DESC')->get();
 
-        return response()->json(['data' => $cv]);
+        return response()->json(['cv' => $cv]);
     }
 
     /**
