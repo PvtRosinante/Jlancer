@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Summary::class);
     }
+
+    public function marketplace()
+    {
+        return $this->hasMany(Marketplace::class);
+    }
 }

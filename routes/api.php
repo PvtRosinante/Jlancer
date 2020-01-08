@@ -29,6 +29,18 @@ Route::group([ 'prefix' => 'auth'], function (){
 }); 
 
 Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('skill', 'SkillController@index');
+    Route::post('skill', 'SkillController@create');
+    Route::post('/skill-update/{id}', 'SkillController@update');
+    Route::delete('/skill-del/{id}', 'SkillController@delete');
+    
+    Route::get('vacancy', 'VacancyController@index');
+    Route::post('vacancy', 'VacancyController@create');
+    Route::post('/vacancy-update/{id}', 'VacancyController@update');
+    Route::delete('/vacancy-del/{id}', 'VacancyController@delete');
+    
+    Route::get('/cv', 'CvController@index');
+    Route::get('/cv/{id}', 'CvController@show');
     Route::post('/cv', 'CvController@insertcv');
     Route::post('/cv-update/contact/{id}', 'CvController@updatecontact');
     Route::post('/cv-update/award/{id}', 'CvController@updateaward');
@@ -44,23 +56,15 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::delete('/cv-del/education/{id}', 'CvController@deleducation');
     Route::delete('/cv-del/experience/{id}', 'CvController@delexperience');
     Route::delete('/cv-del/project/{id}', 'CvController@delproject');
+    
+    Route::get('/profile', 'ProfileController@index');
+
+    Route::get('/vacancyskill', 'SkillvacancyController@index');
+
+    Route::get('/marketplace/{id}', 'MarketplaceController@show');
+    Route::post('/marketplace/sell', 'MarketplaceController@insertmp');
+    Route::post('/marketplace/sell-update/{id}', 'MarketplaceController@update');
+    Route::delete('/marketplace/del/{id}', 'MarketplaceController@deletemp');
 });
 
-Route::get('vacancy', 'VacancyController@index');
-Route::post('vacancy', 'VacancyController@create');
-Route::post('/vacancy-update/{id}', 'VacancyController@update');
-Route::delete('/vacancy-del/{id}', 'VacancyController@delete');
-
-Route::get('skill', 'SkillController@index');
-Route::post('skill', 'SkillController@create');
-Route::post('/skill-update/{id}', 'SkillController@update');
-Route::delete('/skill-del/{id}', 'SkillController@delete');
-
-Route::get('/cv', 'CvController@index');
-Route::get('/cv/{id}', 'CvController@show');
-
-Route::get('/profile', 'ProfileController@index');
-
 Route::get('/home', 'HomepageController@index');
-
-Route::get('/vacancyskill', 'SkillvacancyController@index');
