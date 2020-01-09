@@ -29,6 +29,8 @@ Route::group([ 'prefix' => 'auth'], function (){
 }); 
 
 Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('/home', 'HomepageController@index');
+
     Route::get('skill', 'SkillController@index');
     Route::post('skill', 'SkillController@create');
     Route::post('/skill-update/{id}', 'SkillController@update');
@@ -61,10 +63,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('/vacancyskill', 'SkillvacancyController@index');
 
+    Route::get('/marketplace', 'MarketplaceController@index');
     Route::get('/marketplace/{id}', 'MarketplaceController@show');
     Route::post('/marketplace/sell', 'MarketplaceController@insertmp');
     Route::post('/marketplace/sell-update/{id}', 'MarketplaceController@update');
     Route::delete('/marketplace/del/{id}', 'MarketplaceController@deletemp');
 });
-
-Route::get('/home', 'HomepageController@index');
