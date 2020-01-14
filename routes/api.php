@@ -68,4 +68,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/marketplace/sell', 'MarketplaceController@insertmp');
     Route::post('/marketplace/sell-update/{id}', 'MarketplaceController@update');
     Route::delete('/marketplace/del/{id}', 'MarketplaceController@deletemp');
+    Route::post('/notif','NotifController@add');
 });
