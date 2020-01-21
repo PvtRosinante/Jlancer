@@ -54,7 +54,8 @@ class VacancyController extends Controller
         $vcy->company = $request->company;
         $vcy->isi = $request->isi;
         $vcy->img_banner = $filePath;
-        $vcy->user_id = $request->user_id;
+        $vcy->user_id = Auth::user()->id;
+        $vcy->skill_id = $request->skill_id;
         $vcy->gaji = $request->gaji;
         $vcy->save();
 

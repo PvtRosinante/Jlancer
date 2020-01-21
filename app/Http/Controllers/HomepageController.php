@@ -15,10 +15,11 @@ class homepageController extends Controller
      */
     public function index()
     {
-        $hmpg_skill = Skill::all();
-        $hmpg_vacancy = Vacancy::all();
+        $hmpg_skill = Skill::paginate(3);
+        $hmpg_vacancy = Vacancy::paginate(3);
+        $data = Vacancy::orderBy('id','DESC')->paginate(3);
 
-        return response()->json(['skill' => $hmpg_skill, 'vacancy' => $hmpg_vacancy]);
+        return response()->json(['skill' => $hmpg_skill, 'vacancy' => $hmpg_vacancy,'data'=>$data]);
     }
 
     /**
