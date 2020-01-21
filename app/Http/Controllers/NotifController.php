@@ -12,14 +12,12 @@ use Auth;
 class NotifController extends Controller
 {
     public function add(Request $req ){
-        $user = User::all();
+        $user = User::find(2);
+        $pelamar = Auth::user()->id();
         $details = [
-            'greeting' => 'Hi Artisan',
-            'body' => 'This is my first notification from ItSolutionStuff.com',
-            // 'thanks' => 'Thank you for using ItSolutionStuff.com tuto!',
-            // 'actionText' => 'View My Site',
-            // 'actionURL' => url('/'),
-            // 'order_id' => 101
+            'body' => $pelamar.'Melamar Kerja',
+            'id_job' => 2,
+            'actionURL' => url('/'),
         ];
   
         Notification::send($user, new jobnotif($details));
