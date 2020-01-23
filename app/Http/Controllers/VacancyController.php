@@ -36,9 +36,13 @@ class VacancyController extends Controller
      */
     public function create(Request $request)
     {
+        if ($_FILES['img_banner']) {
+            return response()->json(['Messages' => 'dsada']);
+        }
+
         if ($request->img_banner) {
             // Get image file
-            $image = $request->img_banner;
+            $image = $request->file(img_banner);
             // Make a image name based on user name and current timestamp
             $name = "vacancy".'_'.time();
             // Define folder path
@@ -47,6 +51,8 @@ class VacancyController extends Controller
             $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
             // Upload image
             $this->uploadOne($image,$folder,'public', $name);
+
+            return response()->json(['Messages' => 'dsada']);
         }
 
         $vcy = new Vacancy;
@@ -59,7 +65,6 @@ class VacancyController extends Controller
         $vcy->gaji = $request->gaji;
         $vcy->save();
 
-        return response()->json(['Messages' => 'New vacancy was successfully created']);
     }
 
     /**
